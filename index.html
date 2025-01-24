@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Skylark - Portfolio</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .clay-bg {
+            background: linear-gradient(145deg, #a78bfa, #7c3aed);
+        }
+
+        .clay-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .splash {
+            animation: fadeOut 2s forwards;
+            animation-delay: 3s;
+        }
+
+        @keyframes fadeOut {
+            from {opacity: 1;}
+            to {opacity: 0; visibility: hidden;}
+        }
+
+        .spin {
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+    </style>
+</head>
+<body class="clay-bg min-h-screen">
+    <!-- Splash Screen -->
+    <div class="splash fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-purple-600 to-violet-800">
+        <i class="bi bi-hurricane text-white text-7xl mb-4 spin"></i>
+        <h1 class="text-4xl font-bold text-white mb-8">AeroDev</h1>
+        <p class="text-white opacity-75">Dev by Cloudy</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Navigation -->
+        <nav class="clay-card p-4 mb-8 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-white">Cloud Skylark</h1>
+            <div class="space-x-4">
+                <button onclick="showSection('home')" class="text-white hover:text-purple-200">Home</button>
+                <button onclick="showSection('skills')" class="text-white hover:text-purple-200">Skills</button>
+                <button onclick="showSection('projects')" class="text-white hover:text-purple-200">Projects</button>
+            </div>
+        </nav>
+
+        <!-- Home Section -->
+        <section id="home" class="clay-card p-8 mb-8">
+            <div class="max-w-3xl mx-auto text-center">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&w=200" 
+                     class="w-32 h-32 rounded-full mx-auto mb-4 object-cover" alt="Profile">
+                <h2 class="text-3xl font-bold text-white mb-4">Hello, I'm Cloud Skylark</h2>
+                <p class="text-purple-100 mb-6">
+                    A final year BCA student from Nashik, passionate about technology and software development.
+                    Currently learning Android development with Jetpack Compose and exploring various programming languages.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="hidden">
+            <div class="skill-grid">
+                <div class="clay-card p-6 text-center">
+                    <i class="bi bi-filetype-py text-5xl text-white mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Python</h3>
+                    <p class="text-purple-100">Basic Python programming with focus on fundamentals</p>
+                </div>
+                <div class="clay-card p-6 text-center">
+                    <i class="bi bi-code-slash text-5xl text-white mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">C/C++</h3>
+                    <p class="text-purple-100">DSA implementation and problem solving</p>
+                </div>
+                <div class="clay-card p-6 text-center">
+                    <i class="bi bi-android2 text-5xl text-white mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Android Development</h3>
+                    <p class="text-purple-100">Learning Jetpack Compose with Kotlin</p>
+                </div>
+                <div class="clay-card p-6 text-center">
+                    <i class="bi bi-cloud-fill text-5xl text-white mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">AWS</h3>
+                    <p class="text-purple-100">Basic cloud computing knowledge</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="hidden">
+            <div class="space-y-6">
+                <div class="clay-card p-6 flex flex-col md:flex-row items-center gap-6">
+                    <img src="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&w=300&q=80" 
+                         class="w-full md:w-48 h-48 object-cover rounded-lg" alt="Project 1">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Portfolio App</h3>
+                        <p class="text-purple-100">Android application built with Jetpack Compose featuring modern UI elements and animations</p>
+                    </div>
+                </div>
+                <!-- Add more projects as needed -->
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Section navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        // Initialize
+        window.onload = function() {
+            setTimeout(() => {
+                document.querySelector('.splash').style.display = 'none';
+                showSection('home');
+            }, 5000);
+        }
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
